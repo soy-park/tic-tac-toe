@@ -7,4 +7,14 @@ class Game {
         this.winningCombinations = [["box-1", "box-2", "box-3"], ["box-4", "box-5", "box-6"], ["box-7", "box-8", "box-9"], ["box-1", "box-4", "box-7"], ["box-2", "box-5", "box-8"], ["box-3", "box-6", "box-9"], ["box-1", "box-5", "box-9"], ["box-3", "box-5", "box-7"]];
         this.turn = this.determineFirstTurn();
     }   
+
+    determineFirstTurn(previousPlayer) {
+        if (previousPlayer === "player1") {
+            this.turn = this.player2.token;
+        } else if (previousPlayer === "player2") {
+            this.turn = this.player1.token;
+        } else {
+            this.turn = this.player1.token;
+        }
+    }
 }
