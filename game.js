@@ -17,4 +17,12 @@ class Game {
             this.turn = this.player1.token;
         }
     }
+
+    determineTurn() {
+        if (this.turn === this.player1.token) {
+            this.turn = this.player2.token;
+        } else {
+            this.turn = this.player1.token;
+        }
+    }
 }
