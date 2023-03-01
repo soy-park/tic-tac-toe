@@ -25,4 +25,27 @@ class Game {
             this.turn = this.player1.token;
         }
     }
+
+    playGame(box) {
+        this.board.push(box);
+        if (this.turn === this.player1.token) {
+            this.player1.playToken(box);
+        } else if (this.turn === this.player2.token) {
+            this.player2.playToken(box);
+        }
+    }
+
+    determineWin() {
+        var player;
+        if (this.turn === this.player1.token) {
+            player = "player1";
+        } else {
+            player = "player2";
+        }
+        for (var i = 0; i < this.winningCombinations.length; i++) {
+            if (this[player].plays.includes(this.winningCombinations[i][0]) && this[player].plays.includes(this.winningCombinations[i][1]) && this[player].plays.includes(this.winningCombinations[i][2])) {
+                this[player].increaseWins();
+            } 
+        }
+    }
 }
