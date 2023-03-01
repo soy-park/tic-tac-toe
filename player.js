@@ -9,4 +9,9 @@ class Player {
     increaseWins() {
         return this.wins++;
     }
+
+    playToken(box) {
+        this.plays.push(box);
+    }
 }
+
