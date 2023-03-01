@@ -37,3 +37,15 @@ function changePlayerTurnHeading() {
 //             playerTurnHeading.innerHTML = `<img src=${currentGame.player2.token}><span>WON!</span>`;
 //         }
 }
+
+function displayToken(event) {
+    if (currentGame.turn === currentGame.player1.token) {
+        if (event.target.id && !event.target.innerHTML) {
+            document.getElementById(event.target.id).innerHTML += `<img src="${currentGame.player1.token}" alt="bee-emoji">`;
+        } 
+    } else if (currentGame.turn === currentGame.player2.token) {
+        if (event.target.id && !event.target.innerHTML) {
+            document.getElementById(event.target.id).innerHTML += `<img src="${currentGame.player2.token}" alt="flower-emoji">`;
+        }
+    }
+}

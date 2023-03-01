@@ -43,9 +43,11 @@ class Game {
             player = "player2";
         }
         for (var i = 0; i < this.winningCombinations.length; i++) {
-            if (this[player].plays.includes(this.winningCombinations[i][0]) && this[player].plays.includes(this.winningCombinations[i][1]) && this[player].plays.includes(this.winningCombinations[i][2])) {
-                this[player].increaseWins();
-            } 
+            // if (this[player].plays.includes(this.winningCombinations[i][0]) && this[player].plays.includes(this.winningCombinations[i][1]) && this[player].plays.includes(this.winningCombinations[i][2])) {
+            //     this[player].increaseWins();
+            // } 
+            if (this.winningCombinations[i].some(elem => this[player].plays.includes(elem)))
+                console.log("win")
         }
     }
 
