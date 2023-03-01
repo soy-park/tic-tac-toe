@@ -48,4 +48,18 @@ class Game {
             } 
         }
     }
+
+    detectDraw() {
+        var player;
+        if (this.turn === this.player1.token) {
+            player = "player1";
+        } else {
+            player = "player2";
+        }
+        for (var i = 0; i < this.winningCombinations.length; i++) {
+            if (this.board && !this[player].plays.includes(this.winningCombinations[i][0]) && !this[player].plays.includes(this.winningCombinations[i][1]) && !this[player].plays.includes(this.winningCombinations[i][2])) {
+                return "DRAW!";
+            }
+        }
+    }
 }
