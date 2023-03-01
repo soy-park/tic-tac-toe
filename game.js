@@ -62,4 +62,12 @@ class Game {
             }
         }
     }
+
+    resetGame() {
+        this.player1.plays = [];
+        this.player2.plays = [];
+        this.currentBoard = [];
+        this.player1.wins = 0;
+        this.player2.wins = 0;
+    }
 }
