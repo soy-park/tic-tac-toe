@@ -12,10 +12,7 @@ function startNewGame() {
     currentGame.resetGame();
     currentGame.determineFirstTurn();
     changePlayerTurnHeading();
-    for (var i = 0; i < box.length; i++) {
-        box[i].innerHTML = '';
-        box[i].disabled = false;
-    }
+    clearBoard();
 }
 
 function takeTurn(event) {
@@ -41,14 +38,13 @@ function displayToken(event) {
     if (currentGame.turn === currentGame.player1.token) {
         if (event.target.id && !event.target.innerHTML) {
             document.getElementById(event.target.id).innerHTML += `<img src="${currentGame.player1.token}" alt="bee-emoji">`;
-            document.getElementById(event.target.id).disabled = true;
         } 
     } else if (currentGame.turn === currentGame.player2.token) {
         if (event.target.id && !event.target.innerHTML) {
             document.getElementById(event.target.id).innerHTML += `<img src="${currentGame.player2.token}" alt="flower-emoji">`;
-            document.getElementById(event.target.id).disabled = true;
         }
     }
+    document.getElementById(event.target.id).disabled = true;
 }
 
 function displayWinner() {
@@ -65,7 +61,13 @@ function displayWinner() {
 }
 
 function displayDraw() {
-    playerTurnHeading.innerHTML = `<span>DRAW!</span>`; 
+    playerTurnHeading.innerHTML = `<span>IT'S A DRAW!</span>`; 
     setTimeout(startNewGame, 3000);
 }
 
+function clearBoard() {
+    for (var i = 0; i < box.length; i++) {
+        box[i].innerHTML = '';
+        box[i].disabled = false;
+    }
+}
