@@ -27,7 +27,7 @@ class Game {
     }
 
     playGame(box) {
-        this.board.push(box);
+        this.currentBoard.push(box);
         if (this.turn === this.player1.token) {
             this.player1.playToken(box);
         } else if (this.turn === this.player2.token) {
@@ -43,27 +43,29 @@ class Game {
             player = "player2";
         }
         for (var i = 0; i < this.winningCombinations.length; i++) {
-            // if (this[player].plays.includes(this.winningCombinations[i][0]) && this[player].plays.includes(this.winningCombinations[i][1]) && this[player].plays.includes(this.winningCombinations[i][2])) {
-            //     this[player].increaseWins();
-            // } 
-            if (this.winningCombinations[i].some(elem => this[player].plays.includes(elem)))
-                console.log("win")
+            if (this[player].plays.includes(this.winningCombinations[i][0]) && this[player].plays.includes(this.winningCombinations[i][1]) && this[player].plays.includes(this.winningCombinations[i][2])) {
+                this[player].increaseWins();
+                return player;
+            } 
         }
     }
 
     detectDraw() {
-        var player;
-        if (this.turn === this.player1.token) {
-            player = "player1";
-        } else {
-            player = "player2";
-        }
-        for (var i = 0; i < this.winningCombinations.length; i++) {
-            if (this.board && !this[player].plays.includes(this.winningCombinations[i][0]) && !this[player].plays.includes(this.winningCombinations[i][1]) && !this[player].plays.includes(this.winningCombinations[i][2])) {
-                return "DRAW!";
-            }
+        // var player;
+        // if (this.turn === this.player1.token) {
+        //     player = "player1";
+        // } else {
+        //     player = "player2";
+        // }
+        // for (var i = 0; i < this.winningCombinations.length; i++) {
+        //     if (this.board && !this[player].plays.includes(this.winningCombinations[i][0]) && !this[player].plays.includes(this.winningCombinations[i][1]) && !this[player].plays.includes(this.winningCombinations[i][2])) {
+        //         return "DRAW!";
+            // }
+        if (this.currentBoard.length === 9) {
+            return "draw";
         }
     }
+
 
     resetGame() {
         this.player1.plays = [];

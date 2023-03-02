@@ -78,7 +78,7 @@ main h1 {
 .box {
     text-align: center;
     width: calc(100% / 3);
-    border: 2px solid black;
+    border: 2px solid rgb(104, 38, 158);
     width: 8em;
     height: 8em;
     margin: 0;
