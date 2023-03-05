@@ -22,6 +22,7 @@ function takeTurn(event) {
     currentGame.playGame(event.target.id);
     displayToken(event);
     currentGame.determineWin();
+    currentGame.updateScore();
     increaseWinCount();
     displayWinner();
     if (currentGame.detectDraw() === "draw") {

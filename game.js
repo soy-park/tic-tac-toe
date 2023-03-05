@@ -48,9 +48,16 @@ class Game {
         }
         for (var i = 0; i < this.winningCombinations.length; i++) {
             if (this[player].plays.includes(this.winningCombinations[i][0]) && this[player].plays.includes(this.winningCombinations[i][1]) && this[player].plays.includes(this.winningCombinations[i][2])) {
-                this[player].increaseWins();
                 return player;
             }
+        }
+    }
+
+    updateScore() {
+        if (this.determineWin() === "player1") {
+            this.player1.increaseWins();
+        } else if (this.determineWin() === "player2") {
+            this.player2.increaseWins();
         }
     }
 
