@@ -7,7 +7,7 @@ var player1Wins = document.querySelector('.bee-wins-count');
 var player2Wins = document.querySelector('.flower-wins-count');
 
 window.addEventListener("load", startNewGame);
-boxContainer.addEventListener("click", takeTurn);
+boxContainer.addEventListener("click", determineIfTokenPresent);
 
 function startNewGame() {
     currentGame.determineFirstTurn();
@@ -17,10 +17,17 @@ function startNewGame() {
     boxContainer.style.pointerEvents = '';
 }
 
-function takeTurn(event) {
+function determineIfTokenPresent(event) {
     event.preventDefault();
-    currentGame.playGame(event.target.id);
-    displayToken(event);
+    var box = document.getElementById(event.target.id)
+    if (box && !box.innerHTML) {
+        takeTurn(event.target.id);
+    }
+}
+
+function takeTurn(id) {
+    currentGame.playGame(id);
+    displayToken(id);
     currentGame.determineWin();
     currentGame.updateScore();
     increaseWinCount();
@@ -38,27 +45,13 @@ function changePlayerTurnHeading() {
     } 
 }
 
-function displayToken(event) {
+function displayToken(id) {
     if (currentGame.turn === currentGame.player1.token) {
-        if (event.target.id && !event.target.innerHTML) {
-            document.getElementById(event.target.id).innerHTML += `<img src="${currentGame.player1.token}" alt="bee-emoji">`;
-        } 
+            document.getElementById(id).innerHTML += `<img src="${currentGame.player1.token}" alt="bee-emoji">`;
     } else if (currentGame.turn === currentGame.player2.token) {
-        if (event.target.id && !event.target.innerHTML) {
-            document.getElementById(event.target.id).innerHTML += `<img src="${currentGame.player2.token}" alt="flower-emoji">`;
-        }
+            document.getElementById(id).innerHTML += `<img src="${currentGame.player2.token}" alt="flower-emoji">`;
     }
 }
-
-// function preventClick(event) {
-//     if (event.target.id && event.target.innerHTML) {
-//         for (var i = 0; i < box.length; i++) {
-//             if (event.target.id === box[i].id) {
-//                 box[i].style.pointerEvents = "none";
-//             }
-//         }
-//     }
-// }
 
 function displayWinner() {
     if (currentGame.determineWin() === "player1") {
@@ -77,7 +70,6 @@ function displayWinner() {
 
 function displayDraw() {
     playerTurnHeading.innerHTML = `<span>IT'S A DRAW!</span>`; 
-    // boxContainer.style.pointerEvents = "none";
     setTimeout(startNewGame, 2000);
 }
 

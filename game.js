@@ -31,11 +31,12 @@ class Game {
     }
 
     playGame(box) {
-        this.currentBoard.push(box);
-        if (this.turn === this.player1.token) {
-            this.player1.playToken(box);
-        } else if (this.turn === this.player2.token) {
-            this.player2.playToken(box);
+        if (!this.currentBoard.includes(box)) {
+            if (this.turn === this.player1.token) {
+                this.player1.playToken(box);
+            } else if (this.turn === this.player2.token) {
+                this.player2.playToken(box);
+            }
         }
     }
 
@@ -68,11 +69,11 @@ class Game {
         } else {
             player = "player2";
         }
-        if (this.currentBoard.length === 9) {
+        // if (this.currentBoard.length === 9) {
             for (var i = 0; i < this.winningCombinations.length; i++) {
-                if (!this[player].plays.includes(this.winningCombinations[i][0]) || !this[player].plays.includes(this.winningCombinations[i][1]) || !this[player].plays.includes(this.winningCombinations[i][2])) {
+                if (this.currentBoard.length === 9 && !this[player].plays.includes(this.winningCombinations[i][0]) && !this[player].plays.includes(this.winningCombinations[i][1]) && !this[player].plays.includes(this.winningCombinations[i][2])) {
                     return "draw";
-                }   
+                // }   
             }
         }
     }
