@@ -7,7 +7,8 @@ class Player {
     }
 
     increaseWins() {
-        return this.wins++;
+        this.wins++;
+        return this.wins;
     }
 
     playToken(box) {

@@ -5,20 +5,24 @@ class Game {
         this.board = ["box-1", "box-2", "box-3", "box-4", "box-5", "box-6", "box-7", "box-8", "box-9"];
         this.currentBoard = [];
         this.winningCombinations = [["box-1", "box-2", "box-3"], ["box-4", "box-5", "box-6"], ["box-7", "box-8", "box-9"], ["box-1", "box-4", "box-7"], ["box-2", "box-5", "box-8"], ["box-3", "box-6", "box-9"], ["box-1", "box-5", "box-9"], ["box-3", "box-5", "box-7"]];
-        this.turn = this.determineFirstTurn();
+        this.turn = this.determineNextTurn();
+        this.firstTurn = this.determineFirstTurn();
     }   
 
-    determineFirstTurn(previousPlayer) {
-        if (previousPlayer === "player1") {
+    determineFirstTurn() {
+        if (this.firstTurn === "player1") {
+            this.firstTurn = "player2";
             this.turn = this.player2.token;
-        } else if (previousPlayer === "player2") {
+        } else if (this.firstTurn === "player2") {
+            this.firstTurn = "player1";
             this.turn = this.player1.token;
         } else {
+            this.firstTurn = "player1";
             this.turn = this.player1.token;
         }
     }
 
-    determineTurn() {
+    determineNextTurn() {
         if (this.turn === this.player1.token) {
             this.turn = this.player2.token;
         } else {
@@ -27,11 +31,13 @@ class Game {
     }
 
     playGame(box) {
-        this.board.push(box);
-        if (this.turn === this.player1.token) {
-            this.player1.playToken(box);
-        } else if (this.turn === this.player2.token) {
-            this.player2.playToken(box);
+        if (!this.currentBoard.includes(box)) {
+            this.currentBoard.push(box);
+            if (this.turn === this.player1.token) {
+                this.player1.playToken(box);
+            } else if (this.turn === this.player2.token) {
+                this.player2.playToken(box);
+            }
         }
     }
 
@@ -44,8 +50,16 @@ class Game {
         }
         for (var i = 0; i < this.winningCombinations.length; i++) {
             if (this[player].plays.includes(this.winningCombinations[i][0]) && this[player].plays.includes(this.winningCombinations[i][1]) && this[player].plays.includes(this.winningCombinations[i][2])) {
-                this[player].increaseWins();
-            } 
+                return player;
+            }
+        }
+    }
+
+    updateScore() {
+        if (this.determineWin() === "player1") {
+            this.player1.increaseWins();
+        } else if (this.determineWin() === "player2") {
+            this.player2.increaseWins();
         }
     }
 
@@ -56,10 +70,8 @@ class Game {
         } else {
             player = "player2";
         }
-        for (var i = 0; i < this.winningCombinations.length; i++) {
-            if (this.board && !this[player].plays.includes(this.winningCombinations[i][0]) && !this[player].plays.includes(this.winningCombinations[i][1]) && !this[player].plays.includes(this.winningCombinations[i][2])) {
-                return "DRAW!";
-            }
+        if (this.currentBoard.length === 9 && this.determineWin() !== player) {
+            return "draw";
         }
     }
 
@@ -67,7 +79,5 @@ class Game {
         this.player1.plays = [];
         this.player2.plays = [];
         this.currentBoard = [];
-        this.player1.wins = 0;
-        this.player2.wins = 0;
     }
 }
