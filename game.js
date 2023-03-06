@@ -32,6 +32,7 @@ class Game {
 
     playGame(box) {
         if (!this.currentBoard.includes(box)) {
+            this.currentBoard.push(box);
             if (this.turn === this.player1.token) {
                 this.player1.playToken(box);
             } else if (this.turn === this.player2.token) {
@@ -69,12 +70,8 @@ class Game {
         } else {
             player = "player2";
         }
-        // if (this.currentBoard.length === 9) {
-            for (var i = 0; i < this.winningCombinations.length; i++) {
-                if (this.currentBoard.length === 9 && !this[player].plays.includes(this.winningCombinations[i][0]) && !this[player].plays.includes(this.winningCombinations[i][1]) && !this[player].plays.includes(this.winningCombinations[i][2])) {
-                    return "draw";
-                // }   
-            }
+        if (this.currentBoard.length === 9 && this.determineWin() !== player) {
+            return "draw";
         }
     }
 
