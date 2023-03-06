@@ -39,3 +39,5 @@ Soyeon Park [@soy-park](https://github.com/soy-park)
 - Asking for help 
 - Being patient with myself
 - Making functions more dynamic 
+
+I resolved these challenges by going out of my comfort zone to ask for help from my "rock" when necessary, and taking breaks and pacing myself by creating a plan for what to accomplish each day. In terms of handling technical challenges, I used parameters/argument and `event.target.id` to make functions more dynamic.
