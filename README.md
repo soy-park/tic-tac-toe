@@ -1,7 +1,7 @@
 # Tic-Tac-Toe
 
 ### Abstract: 
-I built a tic-tac-toe game from scratch! Not only does this project display fluency in HTML, CSS, and JavaScript, but it also features a unique design and allows users to play the classic game on their browser. As with the classic tic-tac-toe game, this game allows users to place their token in an empty box, determine if a winning combination or a draw condition exists, and update the player's wins.
+I built a tic-tac-toe game from scratch! Not only does this project display fluency in HTML, CSS, and JavaScript, but it also features a unique design and allows users to play the classic game on their browser. As with the classic tic-tac-toe game, this game allows users to place their token in an empty box, determine if a winning combination or a draw condition exists, and update the player's wins. The game can be played on the following site: https://soy-park.github.io/tic-tac-toe/
 
 ### Installation Instructions:
 1. Fork the repository
